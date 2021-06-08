@@ -1,7 +1,3 @@
-# Beamforming Toolbox EAC
-
-Toolbox para processamento de medições utilizando array de microfones e simulação deste tipo de medição.
-
 # Funções
 
 ## conventional_freq_beamforming
@@ -70,9 +66,10 @@ mic_array = MicArray('load','arquivo.txt','H',1.2)
 ou gerando através de uma geometria pré-estabelecida.
 
 ```
-mic_array = MicArray.generate_array('spiral')
+mic_array = MicArray
+mic_array.generate_array('spiral')
 %%% ou
-mic_array = MicArray.generate_array('circle')
+mic_array.generate_array('circle')
 %%% ps: ainda falta mapear os parâmetros para cada geomêtria.
 ```
 O parâmetro 'H' é opcional, ele é utilizado para passar os dados de altura do centro do array, caso isso já não esteja contabilizado nas posições no eixo y.
@@ -133,7 +130,27 @@ Vetor de frequências
 audio_data.freq_vector
 ```
 
+## ImageToPlot
+
+Objeto utilizado para carregar uma imagem e plotá-la.
+
+### Criando o objeto
+
+```
+img = ImageToPlot('local_da _imagem','figure_length',tamanho_da_imagem_em_metros);
+```
+
+### Plot (método)
+O valor de transparência da imagem vai de 0 a 1.
+
+```
+img.plot('alpha',transparencia_da_imagem);
+
+```
+
 ## BeamformingResult 
+
+Objeto utilizado para guardar os dados processados do imageamento e plotá-los.
 
 ### plot ( método )  
 ```
@@ -153,3 +170,4 @@ ylabel('y (m)')
 			- "interp" - Aplica shading interp na imagem gerada (default = true);
 			- "transparent" - Deixa os valores abaixo da diferença de faixa dinâmica transparentes;
 			- "dB" - Plota os valores da imagem em dB (default = true);
+
