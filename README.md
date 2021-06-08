@@ -90,6 +90,16 @@ origin('y')
 origin('z')
 ```
 
+### position (propriedade)
+
+Posição dos microfones do array
+
+```
+mic_array.position('x')
+mic_array.position('y')
+mic_array.position('z')
+```
+
 ## SAudio
 
 ### Criando o objeto
