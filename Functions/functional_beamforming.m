@@ -1,6 +1,8 @@
 function varargout = functional_beamforming...
     (audio,array,varargin)
 %%
+
+disp('iniciando processamento')
 Result = audio;
 Array = array;
 required_args = ["distance";"freq";];
@@ -71,6 +73,7 @@ for n_f=1:1:length(out_focus.x)
         [V,D] = eig(C{n_freq});
         out_beam_func(n_f,n_freq) = ...
             ((W'*(V*(D^(1/nu_exp))*V')*W)^(nu_exp));
+        disp(['processando ' num2str(n_freq*n_f) ' de ' num2str(length(out_focus.x)*length(fq))])
     end
 end
 
