@@ -16,6 +16,11 @@ classdef BeamformingResult
            this.grid = required_inputs('grid');
            this.Fs = default_inputs('Fs');
         end
+        %%%%%%%% Get freq data
+        function data = get_freq_data(obj, varargin)
+            data = obj.data.get_freq_data(varargin{:});
+        end
+        
         function h = plot(obj, varargin)
             % default arguments
             default_args = containers.Map(...
