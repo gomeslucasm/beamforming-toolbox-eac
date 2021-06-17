@@ -2,7 +2,7 @@ function varargout = functional_beamforming...
     (audio,array,varargin)
 %%
 
-disp('iniciando processamento')
+disp('Iiciando o processamento')
 Result = audio;
 Array = array;
 required_args = ["distance";"freq";];
@@ -73,7 +73,7 @@ for n_f=1:1:length(out_focus.x)
         [V,D] = eig(C{n_freq});
         out_beam_func(n_f,n_freq) = ...
             ((W'*(V*(D^(1/nu_exp))*V')*W)^(nu_exp));
-        disp(['processando ' num2str(n_freq*n_f) ' de ' num2str(length(out_focus.x)*length(fq))])
+        disp(['Processando ' num2str(n_freq*n_f) '/' num2str(length(out_focus.x)*length(fq)) ' pontos do grid'])
     end
 end
 
@@ -94,6 +94,7 @@ for n_x =1:1:length(out_focus.x_mesh)
         f_conc(n_y,n_x,:) = out_beam_func(k,:).*ref;
     end
 end
+disp('Processamento finalizado')
 %%
 if nargout>0
     data = BeamformingFreqResult('data',f_conc,'vector',fq);
