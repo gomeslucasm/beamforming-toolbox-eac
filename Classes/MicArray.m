@@ -3,6 +3,7 @@ classdef MicArray< handle
        calib;
        position;
        parameters;
+       info;
     end  
     methods
         %%%%%%%%% Clas constructor %%%%%%%%%%%%%%%%
@@ -39,8 +40,9 @@ classdef MicArray< handle
             sArgs = containers.Map({'FrameSize','GridInt','Radius',...
                 'MicpCircle','Circles','MinRad','MaxRad','SpiralAngle',...
                 'TurnAngle','Offset','H','Silent'}...
-                ,{1.1,[0.05 0.05],1.3/2,8,4,0.1,0.5,85.9437,0,[0 0],1.2,0});
-            
+                ,{1.1,[0.05 0.05],1.3/2,8,4,0.1,0.5,85.9437,0,[0 0],1.2,1});
+            obj.info = struct();
+            obj.info.type = type;
             %Optional inputs
             % General: Framesize, Grid Int, Radius, MicpCircle
             % Spiral: Circles, SpiralAngle, Minrad, Maxrad
@@ -82,15 +84,8 @@ classdef MicArray< handle
     methods
         function plot(obj)
             if nargin==1
-            figure()
             scatter(obj.position('x'),obj.position('y'),'s','MarkerEdgeColor',[0 0.5 0],'MarkerFaceColor',[1 0.4 1],...
                           'LineWidth',3)
-            grid on
-            xlim([min(obj.position('x'))-1 max(obj.position('x'))+1])
-            ylim([min(obj.position('y'))-1 max(obj.position('y'))+1])
-            xlabel('X[m]'); ylabel('Y[m]');
-            title('Array Geometry')
-            arruma_fig('% 2.2f','% 2.2f','virgula')
             end
         end
     end

@@ -1,0 +1,21 @@
+clear all; close all;
+%% Gerando o array para a simulação
+microphones = MicArray;
+microphones.GenerateArray('circle','H',0)
+% microphones.plot()
+frequency = 3000;
+%%
+array_response = array_pattern_response(microphones, frequency, 5, [[-1,1];[-1,1]], 0.05);
+%%
+figure()
+array_response.plot('freq',3000)
+hold on 
+microphones.plot()
+%%
+
+
+
+
+
+
+%%

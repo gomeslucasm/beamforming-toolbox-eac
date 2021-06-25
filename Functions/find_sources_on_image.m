@@ -64,7 +64,7 @@ end
 Input = rescale(Input,0,255);
 
 %%
-B = ordfilt2(Input,5,ones(3,3));
+B = ordfilt2(Input,9,ones(3,3));
 Bw = imbinarize(B, 'adaptive');
 K = bwpropfilt(Bw, 'EulerNumber',[1 1]);
 
@@ -77,6 +77,18 @@ stats = regionprops('table',Bw,'Centroid',...
 centers = stats.Centroid;
 diameters = mean([stats.MajorAxisLength stats.MinorAxisLength],2);
 radii = diameters/2;
+%%
+% figure()
+% imshow(B,[0 255])
+% export_fig('median_filter','-png')
+% %%
+% figure()
+% imshow(Bw)
+% export_fig('binarize','-png')
+% %%
+% figure()
+% imshow(K)
+% export_fig('bwpropfilt','-png')
 %%
 if Show == 1 
     %%
