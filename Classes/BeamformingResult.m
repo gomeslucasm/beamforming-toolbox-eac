@@ -26,12 +26,16 @@ classdef BeamformingResult
         function h = plot(obj, varargin)
             % default arguments
             default_args = containers.Map(...
-                {'DR','interp','transparent','dB'},...
-                {0, true, false, true});
+                {'DR','interp','transparent','dB','normalize'},...
+                {0, true, false, true,false});
             % parsing default args and inputs
             parsed_args = parse_default_args(default_args,varargin);
             % get data to plot
             plot_data = abs(obj.data.get_freq_data(varargin{:}));
+            % normalize
+            if parsed_args('normalize')
+                plot_data = plot_data./max(max(plot_data));
+            end
             % dB data
             if parsed_args('dB')
                 plot_data = mag2dbPa(plot_data);
